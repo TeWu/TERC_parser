@@ -4,10 +4,10 @@ require 'active_support/all'
 
 module TercParser
   class << self
-    def parse_terc(terc_file_name = "TERC.xml")
+    def parse_terc(terc_file_path = "TERC.xml")
       stan_na = wojewodztwa = powiaty = gminy = nil
 
-      process_xml_file "TERC.xml" do |doc|
+      process_xml_file terc_file_path do |doc|
         stan_na             = doc.xpath("/teryt/catalog/@date")
 
         ### WOJEWODZTWA ## ----------------------------------
