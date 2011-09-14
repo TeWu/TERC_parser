@@ -1,6 +1,6 @@
 #TERC parser
 
-Gem składa się praktycznie z jednej metody: `parse_terc`. Po jej wywołaniu, opcjonalnie podając jako argument ścieźkę do pliku `TERC.xml`, zwróci ona hash zawierający cztery klucze:
+Gem składa się praktycznie z jednej metody: `TercParser::parse_terc`. Po jej wywołaniu, opcjonalnie podając jako argument ścieżkę do pliku `TERC.xml`, zwróci ona hash zawierający cztery klucze:
 
 * **:stan_na** - zawiera datę (jako string) utworzenia pliku `TERC.xml`
 * **:wojewodztwa** - zawiera tablice hashy, każdy hash zawiera informacje o jednym województwie
@@ -48,10 +48,9 @@ STAN NA: 2011-01-01
 Kod:
 
 ``` ruby
-#encoding: utf-8
 require "terc_parser"
 
-terc = parse_terc
+terc = TercParser::parse_terc "/path_to_terc/TERC.xml"
 
 puts "STAN NA: #{terc[:stan_na]}"
 
