@@ -8,14 +8,14 @@ module TercParser
       stan_na = wojewodztwa = powiaty = gminy = nil
 
       process_xml_file terc_file_path do |doc|
-        stan_na             = doc.xpath("/teryt/catalog/@date")
+        stan_na             = doc.xpath("/teryt/catalog/@date").text
 
         ### WOJEWODZTWA ## ----------------------------------
         wojewodztwa_nodeset = doc.xpath("//col[@name='NAZDOD' and text()='województwo']/..")
 
         wojewodztwa     = wojewodztwa_nodeset.map do |woj|
           id   = woj.xpath("col[@name = 'WOJ']").text.to_i
-          name = woj.xpath("col[@name = 'NAZWA']/text()").text.mb_chars.downcase
+          name = woj.xpath("col[@name = 'NAZWA']/text()").text.mb_chars.downcase.to_s
           {id: id, name: name}
         end
 
@@ -25,7 +25,7 @@ module TercParser
         powiaty       = powiaty_nodeset.map do |woj|
           id     = woj.xpath("col[@name = 'POW']").text.to_i
           woj_id = woj.xpath("col[@name = 'WOJ']").text.to_i
-          name   = woj.xpath("col[@name = 'NAZWA']/text()").text.mb_chars.downcase
+          name   = woj.xpath("col[@name = 'NAZWA']/text()").text.mb_chars.downcase.to_s
           {id: id, woj_id: woj_id, name: name}
         end
 
@@ -36,7 +36,7 @@ module TercParser
           id     = woj.xpath("col[@name = 'GMI']").text.to_i
           woj_id = woj.xpath("col[@name = 'WOJ']").text.to_i
           pow_id = woj.xpath("col[@name = 'POW']").text.to_i
-          name   = woj.xpath("col[@name = 'NAZWA']/text()").text.mb_chars.downcase
+          name   = woj.xpath("col[@name = 'NAZWA']/text()").text.mb_chars.downcase.to_s
           {id: id, woj_id: woj_id, pow_id: pow_id, name: name}
         end
       end
