@@ -13,22 +13,22 @@ describe TercParser do
   end
 
   it "should collect data that are correct type" do
-    terc.class.should == Hash
+    terc.should be_instance_of Hash
     terc[:stan_na].class.should == String
 
-    terc[:wojewodztwa].class.should == Array
-    terc[:wojewodztwa][0][:id].class.should == Fixnum
-    terc[:wojewodztwa][0][:name].class.should == String
+    terc[:wojewodztwa].should be_instance_of Array
+    terc[:wojewodztwa][0][:id].should be_instance_of Fixnum
+    terc[:wojewodztwa][0][:name].should be_instance_of String
 
-    terc[:powiaty].class.should == Array
-    terc[:powiaty][0][:id].class.should == Fixnum
-    terc[:powiaty][0][:woj_id].class.should == Fixnum
-    terc[:powiaty][0][:name].class.should == String
+    terc[:powiaty].should be_instance_of Array
+    terc[:powiaty][0][:id].should be_instance_of Fixnum
+    terc[:powiaty][0][:woj_id].should be_instance_of Fixnum
+    terc[:powiaty][0][:name].should be_instance_of String
 
-    terc[:gminy].class.should == Array
-    terc[:gminy][0][:id].class.should == Fixnum
-    terc[:gminy][0][:woj_id].class.should == Fixnum
-    terc[:gminy][0][:pow_id].class.should == Fixnum
-    terc[:gminy][0][:name].class.should == String
+    terc[:gminy].should be_instance_of Array
+    terc[:gminy][0][:id].should be_instance_of Fixnum
+    terc[:gminy][0][:woj_id].should be_instance_of Fixnum
+    terc[:gminy][0][:pow_id].should be_instance_of Fixnum
+    terc[:gminy][0][:name].should be_instance_of String
   end
 end
